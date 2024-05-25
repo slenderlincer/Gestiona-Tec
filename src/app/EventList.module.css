@@ -1,0 +1,124 @@
+/* EventList.module.css */
+.eventListContainer {
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f0f6fc;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  color: #007bff;
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.filterContainer {
+  display: flex;
+  flex-direction: column; /* Cambio a columna */
+  align-items: flex-start; /* Alineación a la izquierda */
+  margin-bottom: 20px;
+}
+
+.searchInput,
+.selectInput {
+  padding: 12px; /* Aumento del padding */
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px; /* Espacio entre elementos */
+  width: 100%; /* Ancho completo */
+}
+
+.eventList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.eventItem {
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.eventName {
+  color: #007bff;
+  margin-top: 0;
+}
+
+.eventDetail {
+  margin-bottom: 10px;
+}
+
+.imageContainer {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.image {
+  border-radius: 5px;
+}
+
+.buttonContainer {
+  display: flex;
+}
+
+.deleteButton,
+.editButton {
+  padding: 8px 16px;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+.deleteButton {
+  background-color: #dc3545;
+  transition: background-color 0.3s ease;
+}
+
+.editButton {
+  background-color: #007bff;
+  transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+  background-color: #c82333; /* Color más oscuro al hacer hover */
+}
+
+.editButton:hover {
+  background-color: #0056b3; /* Color más oscuro al hacer hover */
+}
+
+
+.buttonContainer {
+  display: flex;
+}
+
+.registerButton {
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  background-color: #007bff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.registerButton:hover {
+  background-color: #0056b3;
+}

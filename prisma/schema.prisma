@@ -1,0 +1,125 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               Int        @id @default(autoincrement())
+  role             Role       @default(USER)
+  username         String     @unique
+  email            String     @unique
+  password         String
+  nombres          String    
+  apellidos        String    @unique
+  nombreCompleto   String    
+  carrera          String?   
+  grupo            String?  
+  numeroControl    String?   
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+
+  // Relación con los eventos a los que el usuario está registrado
+  events           Event[]    @relation("Participant")
+  participations   Participant[]
+  teams            Team[]     // Relación con los equipos del evento
+}
+
+enum Role {
+  USER
+  ADMIN 
+}
+
+model Event {
+  id_evento   Int      @id @default(autoincrement())
+  name        String   @unique
+  date        DateTime
+  location    String
+  descripcion String
+  type        EventType  // Nuevo campo para el tipo de evento
+  image       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relación con los participantes (usuarios) del evento
+  participants User[]  @relation("Participant")
+  participations Participant[]
+
+  // Relación con la tabla de registros de participantes del evento
+  eventParticipants EventParticipant[]
+  teams             Team[]    // Relación con los equipos del evento
+}  
+
+// Nuevo enum para el tipo de evento
+enum EventType {
+  INDIVIDUAL
+  TEAM
+}
+
+model Participant {
+  id               Int      @id @default(autoincrement())
+  user             User     @relation(fields: [userId], references: [id])
+  userId           Int
+  username         String
+  nombreCompleto   String    
+  carrera          String   
+  grupo            String  
+  numeroControl    String  
+  email            String   
+  edad             Int
+  telefono         Int
+  event            Event    @relation(fields: [eventId], references: [id_evento])
+  eventId          Int
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  eventParticipants EventParticipant[]
+  @@unique([userId, eventId])
+}
+
+// Modelo para la tabla de registros de participantes del evento
+model EventParticipant {
+  id               Int          @id @default(autoincrement())
+  event            Event        @relation(fields: [eventId], references: [id_evento])
+  participant      Participant  @relation(fields: [participantId], references: [id])
+  nombreCompletoParticipante   String
+  eventId          Int
+  participantId    Int
+  participantName  String       // Nuevo campo para el nombre del participante
+  eventName        String       // Nuevo campo para el nombre del evento
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([eventId, participantId])
+}
+
+// Modelo para la tabla de equipos
+model Team {
+  id               Int       @id @default(autoincrement())
+  user             User      @relation(fields: [userId], references: [id])
+  userId           Int
+  nameTeam         String
+  username         String
+  nombreCompleto   String    
+  carrera          String   
+  grupo            String  
+  numeroControl    String 
+  email            String
+  age              Int
+  phone            Int
+  event            Event     @relation(fields: [eventId], references: [id_evento])
+  eventId          Int
+  nameEvent        String
+  members          Json      // Campo para almacenar los miembros del equipo en formato JSON
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+}

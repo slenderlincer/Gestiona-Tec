@@ -1,0 +1,67 @@
+/* VerParticipantesEquipo.module.css */
+.container {
+    max-width: 1200px; /* Ajustar el ancho máximo según tus necesidades */
+    margin: 0 auto;
+    padding: 20px;
+}
+  
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+  
+.error {
+    color: red;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+  
+.participantsList {
+    display: grid;
+    grid-template-columns: 1fr; /* Cambiar a una sola columna */
+    gap: 20px;
+}
+  
+.participantCard {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%; /* Ajustar el ancho del card */
+}
+  
+/* Ajustes para el diseño de cascada */
+@media (min-width: 600px) {
+    .participantsList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+  
+@media (min-width: 900px) {
+    .participantsList {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+  
+.participantCard h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+  
+.participantCard p {
+    margin: 5px 0;
+}
+  
+.customButton {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%; /* Ajustar el ancho del botón */
+}
+  
+.customButton:hover {
+    background-color: #d32f2f;
+}
